@@ -1,0 +1,31 @@
+'strip-gmail-headers.py' is a simple Python script that strips (removes) a
+few header items from a saved copy of a Gmail message that is formatted for
+printing.
+
+The following items are removed:
+
+* The Gmail logo, and the name/email address.
+* The subject line.
+* The from, to, and date line.
+* The horizontal rule at the end of the message.
+
+This script has been tested only with Firefox, though in principle, it should
+work with other browsers as well.
+
+To use this script (assuming Firefox):
+
+1) From an open Gmail message, select "Print". A new window or tab pops up
+   with the contents of the message, formatted for printing. A print dialog
+   box may also pop up; exit out of this.
+
+2) From the web browser menu, select "Save Page As". Pick an easy file name
+   (e.g., "foo.html"). Make sure to select the "Web Page, complete" option.
+
+3) Run 'strip-gmail-headers.py foo.html'. This rewrites 'foo.html' to a
+   version that removes the items listed above.
+
+4) Reload the saved version in the browser and print.
+
+There seem to be other methods of doing similar things floating around out
+there, mostly involving Greasemonkey scripts, but I haven't tried them; this
+script works fine for my purposes.
