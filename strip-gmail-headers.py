@@ -3,6 +3,11 @@
 import re
 import sys
 
+# Check arguments.
+if len(sys.argv) != 2:
+    print "Usage: %s <gmail_msg_html_file>" % sys.argv[0]
+    sys.exit(1)
+
 # Open HTML file.
 html_file = open(sys.argv[1], 'rb')
 html = html_file.read()
