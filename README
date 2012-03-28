@@ -7,7 +7,6 @@ The following items are removed:
 * The Gmail logo, and the name/email address.
 * The subject line.
 * The from, to, and date line.
-* The horizontal rule at the end of the message.
 
 This script has been tested only with Firefox, though in principle, it should
 work with other browsers as well.
