@@ -34,11 +34,12 @@ for count in range(2):
     (start, end) = (match.start(1), match.end(1))
     html = html[:start] + html[end:]
 
-# Delete: <hr>
+# Delete: Next two <hr>
 target = '<hr>'
-start = html.find(target)
-end = start + len(target)
-html = html[:start] + html[end:]
+for count in range(2):
+    start = html.find(target)
+    end = start + len(target)
+    html = html[:start] + html[end:]
 
 # Delete: Next two <tr> to </tr>
 regex = re.compile(
