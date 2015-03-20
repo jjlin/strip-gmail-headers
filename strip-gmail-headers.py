@@ -13,11 +13,14 @@ html_file = open(sys.argv[1], 'rb')
 html = html_file.read()
 html_file.close()
 
-# Delete: onload="Print()"
-target = ' onload="Print()"'
+# Delete: window.print()
+target = 'window.print()'
 start = html.find(target)
-end = start + len(target)
-html = html[:start] + html[end:]
+if (start >= 0):
+    end = start + len(target)
+    html = html[:start] + html[end:]
+else:
+    print("Failed to find the onload printing handler.")
 
 # Delete: Next two <table> to </table>
 regex = re.compile(
@@ -31,15 +34,21 @@ regex = re.compile(
 )
 for count in range(2):
     match = regex.search(html)
-    (start, end) = (match.start(1), match.end(1))
-    html = html[:start] + html[end:]
+    if match:
+        (start, end) = (match.start(1), match.end(1))
+        html = html[:start] + html[end:]
+    else:
+        print("Failed to match <table> tag (count = %d)." % count)
 
 # Delete: Next two <hr>
 target = '<hr>'
 for count in range(2):
     start = html.find(target)
-    end = start + len(target)
-    html = html[:start] + html[end:]
+    if (start >= 0):
+        end = start + len(target)
+        html = html[:start] + html[end:]
+    else:
+        print("Failed to match <hr> tag (count = %d)." % count)
 
 # Delete: Next two <tr> to </tr>
 regex = re.compile(
@@ -53,8 +62,11 @@ regex = re.compile(
 )
 for count in range(2):
     match = regex.search(html)
-    (start, end) = (match.start(1), match.end(1))
-    html = html[:start] + html[end:]
+    if match:
+        (start, end) = (match.start(1), match.end(1))
+        html = html[:start] + html[end:]
+    else:
+        print("Failed to match <tr> tag (count = %d)." % count)
 
 # Write out the result.
 html_file = open(sys.argv[1], 'wb')
